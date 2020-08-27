@@ -31,10 +31,17 @@ class TicTacToe:
                 curPlayer = 1
                 self.DisplayBoard(self.Board)
             else:
-                pos = int(input())-1
-                self.Board = self.playMove(pos, player, self.Board)
-                self.DisplayBoard(self.Board)
                 curPlayer = 0
+                pos = int(input())-1
+                if self.Board[pos] == "-" and pos < 10:
+                    self.Board = self.playMove(pos, player, self.Board)
+                else:
+                    print("invalid move")
+                    curPlayer=1
+
+
+                self.DisplayBoard(self.Board)
+
 
         if (self.GameStatus(self.Board) == False):
             if (curPlayer == 1):
@@ -120,8 +127,7 @@ class Agent:
         #gives possible actions for a state
         self.psble_actions = defaultdict(lambda : -1)
 
-        #gives action values for possible actions.
-        self.actionValues = defaultdict(lambda :None)
+
         if readActionValues !=0 :
             self.readActionValues(readActionValues)
 
